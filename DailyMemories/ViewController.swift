@@ -40,12 +40,12 @@ class ViewController: UIViewController {
         let model = GoogLeNetPlaces()
         guard let visionCoreMLModel = try? VNCoreMLModel(for: model.model) else { return }
         let sceneClassificationRequest = VNCoreMLRequest(model: visionCoreMLModel,
-                                                         completionHandler: self.handleSceneClassificationResults)
+                                                         completionHandler: handleSceneClassificationResults)
         
         /* 1. Create Vision face detection request
            - completion handler should take in handleFaceDetectionResults */
-        
-        // 👩🏻‍💻 YOUR CODE GOES HERE
+
+        let faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: handleFaceDetectionResults)
         
         // Create request handler
         guard let cgImage = image.cgImage else {
@@ -61,7 +61,13 @@ class ViewController: UIViewController {
          - Ensure perform work is dispatched on appropriate queue (not main queue)
          - */
         
-        // 👨🏽‍💻 YOUR CODE GOES HERE
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                try handler.perform([sceneClassificationRequest, faceDetectionRequest])
+            } catch {
+                print("Error performing requests")
+            }
+        }
     }
     
     // Do something with scene classification results
@@ -80,9 +86,13 @@ class ViewController: UIViewController {
        - Add face box view
        - Ensure that it is dispatched on the main queue, because we are updating the UI */
     private func handleFaceDetectionResults(request: VNRequest, error: Error?) {
-        
-        // 👨🏽‍💻 YOUR CODE GOES HERE
-        
+        guard let observation = request.results?.first as? VNFaceObservation else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.addFaceBoxView(faceBoundingBox: observation.boundingBox)
+        }
     }
     
     // MARK: Helper methods
