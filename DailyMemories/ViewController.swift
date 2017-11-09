@@ -39,30 +39,52 @@ class ViewController: UIViewController {
         
         // 1. Create Vision Core ML model
         
-        // 👩🏻‍💻 YOUR CODE GOES HERE
+        guard let googLeNetPlacesModel = try? VNCoreMLModel(for: GoogLeNetPlaces().model) else {
+            fatalError("Could not load model")
+        }
+
+        guard let cgImage = image.cgImage else {
+            fatalError("Unable to get core graphics image")
+        }
         
         // 2. Create Vision Core ML request
 
-        // 👨🏽‍💻 YOUR CODE GOES HERE
+        let request = VNCoreMLRequest(model: googLeNetPlacesModel, completionHandler: handleClassificationResults)
+
 
         // 3. Create request handler
         // *First convert image: UIImage to CGImage + get CGImagePropertyOrientation (helper method)*
-        
-        // 👨🏼‍💻 YOUR CODE GOES HERE
-    
+
+        let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage, orientation: convertToCGImageOrientation(from: image), options: [:])
+
         // 4. Perform request on handler
         // Ensure that it is done on an appropriate queue (not main queue)
-        
-        // 👩🏼‍💻 YOUR CODE GOES HERE
+
+        captionLabel.text = "Classifying scene..."
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                try imageRequestHandler.perform([request])
+            } catch {
+                print("error peforming request")
+            }
+        }
     }
     
     // 5. Do something with the results
     // - Update the caption label
     // - Ensure that it is dispatched on the main queue, because we are updating the UI
     private func handleClassificationResults(for request: VNRequest, error: Error?) {
-        
-        // 👨🏿‍💻 YOUR CODE GOES HERE
-        
+        DispatchQueue.main.async {
+            guard let classifications = request.results as? [VNClassificationObservation] else {
+                self.captionLabel.text = "Failed to classify"
+                return
+            }
+            if !classifications.isEmpty {
+                self.updateCaptionLabel(classifications)
+            } else {
+                self.captionLabel.text = "No classifications found"
+            }
+        }
     }
     
     // MARK: Helper methods

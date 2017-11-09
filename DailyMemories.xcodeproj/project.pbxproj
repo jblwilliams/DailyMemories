@@ -12,16 +12,18 @@
 		357C7A751F5C943600A0A33C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 357C7A731F5C943600A0A33C /* Main.storyboard */; };
 		357C7A771F5C943700A0A33C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 357C7A761F5C943700A0A33C /* Assets.xcassets */; };
 		357C7A7A1F5C943700A0A33C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 357C7A781F5C943700A0A33C /* LaunchScreen.storyboard */; };
+		BCD1BA401FB4B42500EFD3A4 /* GoogLeNetPlaces.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BCD1BA3F1FB4B42500EFD3A4 /* GoogLeNetPlaces.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		357C7A6C1F5C943600A0A33C /* DailyMemories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyMemories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		357C7A6F1F5C943600A0A33C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		357C7A711F5C943600A0A33C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		357C7A711F5C943600A0A33C /* ViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		357C7A741F5C943600A0A33C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		357C7A761F5C943700A0A33C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		357C7A791F5C943700A0A33C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		357C7A7B1F5C943700A0A33C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCD1BA3F1FB4B42500EFD3A4 /* GoogLeNetPlaces.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GoogLeNetPlaces.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		357C7A6E1F5C943600A0A33C /* DailyMemories */ = {
 			isa = PBXGroup;
 			children = (
+				BCD1BA3F1FB4B42500EFD3A4 /* GoogLeNetPlaces.mlmodel */,
 				357C7A6F1F5C943600A0A33C /* AppDelegate.swift */,
 				357C7A711F5C943600A0A33C /* ViewController.swift */,
 				357C7A731F5C943600A0A33C /* Main.storyboard */,
@@ -138,6 +141,7 @@
 			files = (
 				357C7A721F5C943600A0A33C /* ViewController.swift in Sources */,
 				357C7A701F5C943600A0A33C /* AppDelegate.swift in Sources */,
+				BCD1BA401FB4B42500EFD3A4 /* GoogLeNetPlaces.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
